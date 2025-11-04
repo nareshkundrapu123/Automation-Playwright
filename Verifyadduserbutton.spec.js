@@ -1,0 +1,38 @@
+import { test, expect } from '@playwright/test';
+
+test.setTimeout(6000000);
+test('test', async ({ page }) => {
+  await page.goto('http://192.168.1.101:4200/');
+  await page.getByRole('textbox', { name: 'SSO ID' }).click();
+  await page.getByRole('textbox', { name: 'SSO ID' }).fill('789456123');
+  await page.getByRole('textbox', { name: 'SSO ID' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Enter password' }).fill('mlive@12');
+  await page.getByRole('textbox', { name: 'Enter password' }).press('Tab');
+  await page.getByRole('button').filter({ hasText: /^$/ }).press('Tab');
+  await page.getByRole('button', { name: '↻' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).press('CapsLock');
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).fill('X2Z54D');
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).press('Tab');
+  await page.getByRole('button', { name: 'Log In' }).press('Enter');
+  await page.getByRole('button', { name: 'Log In' }).click();
+  await page.getByRole('button', { name: ' Masters ' }).click();
+  await page.getByRole('listitem').filter({ hasText: 'Users' }).click();
+  await page.getByRole('button', { name: 'Add User' }).click();
+  await page.getByRole('textbox', { name: 'Enter Username' }).click();
+  await page.getByRole('textbox', { name: 'Enter Username' }).fill('KOH');
+  await page.getByRole('textbox', { name: 'Enter Username' }).press('CapsLock');
+  await page.getByRole('textbox', { name: 'Enter Username' }).fill('kohili');
+  await page.getByRole('textbox', { name: 'Enter Username' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Enter SSO ID' }).fill('111111111');
+  await page.locator('form').getByRole('combobox').selectOption('buyer');
+  await page.getByRole('textbox', { name: 'Enter Contact Number' }).click();
+  await page.getByRole('textbox', { name: 'Enter Contact Number' }).fill('8522222000');
+  await page.getByRole('textbox', { name: 'Enter Contact Number' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Enter Email ID' }).fill('kohili123@gmail.com');
+  await page.getByRole('textbox', { name: 'Enter Email ID' }).press('Tab');
+  await page.getByRole('combobox').nth(3).selectOption('Purchase');
+  await page.getByRole('button', { name: 'Submit' }).click();
+  await page.getByRole('cell', { name: 'kohili123@gmail.com' }).click();
+  await page.getByRole('button', { name: 'Edit' }).first().click();
+  await page.getByRole('button', { name: 'Cancel' }).click();
+});
