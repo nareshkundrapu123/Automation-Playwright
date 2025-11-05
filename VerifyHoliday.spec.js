@@ -1,0 +1,31 @@
+import { test, expect } from '@playwright/test';
+
+test.setTimeout(6000000);
+test('test', async ({ page }) => {
+  await page.goto('http://192.168.1.101:4200/');
+  await page.getByRole('textbox', { name: 'SSO ID' }).click();
+  await page.getByRole('textbox', { name: 'SSO ID' }).click();
+  await page.getByRole('textbox', { name: 'SSO ID' }).fill('789456123');
+  await page.getByRole('textbox', { name: 'SSO ID' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Enter password' }).fill('mlive@12');
+  await page.getByRole('textbox', { name: 'Enter password' }).press('Tab');
+  await page.getByRole('button').filter({ hasText: /^$/ }).press('Tab');
+  await page.getByRole('button', { name: '↻' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).press('CapsLock');
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).fill('MSFDRC');
+  await page.getByRole('button', { name: 'Log In' }).click();
+  await page.getByRole('button', { name: ' Masters ' }).click();
+  await page.getByRole('list').getByText('Holidays').click();
+  await page.getByRole('combobox').selectOption('25');
+  await page.getByRole('combobox').selectOption('50');
+  await page.locator('.slider').first().click();
+  await page.getByRole('button', { name: 'Confirm' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.locator('.slider').first().click();
+  await page.getByRole('button', { name: 'Confirm' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.getByRole('textbox').first().fill('2025-11-01');
+  await page.getByRole('textbox').nth(1).fill('2025-11-02');
+  await page.getByRole('button', { name: 'Search' }).click();
+  await page.getByRole('button', { name: 'Refresh' }).click();
+});

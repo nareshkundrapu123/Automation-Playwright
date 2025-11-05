@@ -1,0 +1,32 @@
+import { test, expect } from '@playwright/test';
+
+test('test', async ({ page }) => {
+  await page.goto('http://192.168.1.101:4200/');
+  await page.getByRole('textbox', { name: 'SSO ID' }).click();
+  await page.getByRole('textbox', { name: 'SSO ID' }).fill('');
+  await page.getByRole('textbox', { name: 'SSO ID' }).click();
+  await page.getByRole('textbox', { name: 'SSO ID' }).fill('789456123');
+  await page.getByRole('textbox', { name: 'SSO ID' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Enter password' }).fill('mlive@12');
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).click();
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).fill('3');
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).press('CapsLock');
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).fill('3X7UKT');
+  await page.getByRole('button', { name: 'Log In' }).click();
+  await page.getByRole('button', { name: ' Masters ' }).click();
+  await page.getByRole('list').getByText('Role Base Access').click();
+  await page.getByRole('button', { name: 'Edit Access' }).nth(2).click();
+  await page.locator('label').filter({ hasText: 'RBAC' }).click();
+  await page.locator('app-rolebase-access').getByText('Suppliers').click();
+  await page.locator('label').filter({ hasText: /^Lead Time$/ }).check();
+  await page.getByRole('button', { name: 'Save Changes' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.getByRole('button', { name: 'Edit Access' }).nth(2).click();
+  await page.getByRole('button', { name: 'Close' }).click();
+  await page.getByRole('button', { name: 'Edit Access' }).nth(3).click();
+  await page.locator('label').filter({ hasText: 'Users' }).click();
+  await page.getByRole('button', { name: 'Save Changes' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+  await page.getByRole('button', { name: 'OK' }).click();
+});
