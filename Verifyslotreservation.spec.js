@@ -1,0 +1,33 @@
+import { test, expect } from '@playwright/test';
+
+test.setTimeout(6000000);
+test('test', async ({ page }) => {
+  await page.goto('http://192.168.1.101:4200/');
+  await page.getByRole('textbox', { name: 'SSO ID' }).click();
+  await page.getByRole('textbox', { name: 'SSO ID' }).fill('789456123');
+  await page.getByRole('textbox', { name: 'SSO ID' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Enter password' }).fill('mlive@12');
+  await page.getByRole('textbox', { name: 'Enter password' }).press('Tab');
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).click();
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).press('CapsLock');
+  await page.getByRole('textbox', { name: 'Please enter the CAPTCHA' }).fill('J6JGM4');
+  await page.getByRole('button', { name: 'Log In' }).click();
+  await page.getByRole('button', { name: ' Reservation ' }).click();
+  await page.getByRole('list').getByText('Slot Reservations').click();
+  await page.getByRole('textbox').fill('2025-11-07');
+  await page.getByText(':00 - 21:00').click();
+  await page.getByRole('textbox').nth(1).click();
+  await page.getByRole('textbox').nth(1).fill('10:00');
+  await page.getByRole('textbox').nth(2).click();
+  await page.getByRole('textbox').nth(2).fill('10:30');
+  await page.getByRole('combobox').first().selectOption('2');
+  await page.getByRole('combobox').nth(1).selectOption('19');
+  await page.getByRole('combobox').nth(2).selectOption('6');
+  await page.locator('div').filter({ hasText: /^Select Email IDs$/ }).nth(1).click();
+  await page.getByText('naveen@gmail.com').click();
+  await page.getByRole('spinbutton').first().click();
+  await page.getByRole('spinbutton').first().fill('2');
+  await page.getByRole('spinbutton').nth(1).click();
+  await page.getByRole('spinbutton').nth(1).fill('1');
+  await page.getByRole('button', { name: 'Book' }).click();
+});
